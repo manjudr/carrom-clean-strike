@@ -1,17 +1,17 @@
 package com.sahaj.managers
 
-import com.sahaj.services.{CarromBoardService, User}
+import com.sahaj.services.{CarromBoardService, Player}
 
 object PlayerManager {
-  def registerUser(userIdentifier: String): User = {
-    new User(userIdentifier)
+  def registerUser(userIdentifier: String): Player = {
+    new Player(userIdentifier)
   }
 
-  def resetUser(user: User): Unit = {
+  def resetUser(user: Player): Unit = {
     user.reset()
   }
 
-  def play(player1: User, player2: User, carrom: CarromBoardService): Unit = {
+  def play(player1: Player, player2: Player, carrom: CarromBoardService): Unit = {
     while (!carrom.isMatchWon) {
       val activePlayer = if (player1.status == "ACTIVE") {
         player2.restStatus("ACTIVE")

@@ -1,8 +1,8 @@
 package com.sahaj.services
 
-case class userSpec(var identifier: String, redCoins: Int, blockCoins: String, status: String, score: Int, wonStatus: String)
+case class PlayerSpec(var identifier: String, redCoins: Int, blockCoins: String, status: String, score: Int, wonStatus: String)
 
-class User(userId: String) {
+class Player(userId: String) {
   var redCoins: Int = 0
   var blockCoins: Int = 0
   var score: Int = 0

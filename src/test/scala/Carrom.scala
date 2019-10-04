@@ -1,4 +1,4 @@
-import com.sahaj.managers.{Choices, DashBoardManager, PlayerManager}
+import com.sahaj.managers.{PlayerManager}
 import com.sahaj.services.CarromBoardService
 
 object Carrom {

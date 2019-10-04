@@ -1,6 +1,6 @@
 package com.sahaj.managers
 
-import com.sahaj.services.{GameStatus, User}
+import com.sahaj.services.{GameStatus, Player}
 
 case class Choices(number: Int)
 
@@ -12,7 +12,7 @@ object DashBoardManager {
   }
 
 
-  def promptChoices(user: User): Choices = {
+  def promptChoices(user: Player): Choices = {
     println(user.identifier + ": Please select the below one choice")
     println("1. STRIKE")
     println("2. MULTI_STRIKE")
