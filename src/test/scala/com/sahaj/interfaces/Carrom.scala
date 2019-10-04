@@ -1,6 +1,5 @@
 package com.sahaj.interfaces
 
-import com.sahaj.managers.CoinsDashBoard
 import com.sahaj.services.{GameStatus, Player}
 
 trait Carrom {

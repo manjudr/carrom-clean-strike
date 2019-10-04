@@ -13,7 +13,7 @@ object DashBoardManager {
 
 
   def promptChoices(user: Player): Choices = {
-    println(user.identifier + ": Please select the below one choice")
+    println(user.identifier.toUpperCase() + ": IT'S YOUR TURN, PLEASE SELECT THE CHOICE NUMBER")
     println("1. STRIKE")
     println("2. MULTI_STRIKE")
     println("3. RED_STRIKE")
@@ -25,7 +25,7 @@ object DashBoardManager {
     Choices(response.number)
   }
 
-  def showInDashBoard(board: GameStatus) = {
+  def showInDashBoard(board: GameStatus):Unit = {
     println("=============================")
     println("USER ID:" + board.userId)
     println("STATUS:" + board.status)
