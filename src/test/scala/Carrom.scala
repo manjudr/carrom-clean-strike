@@ -10,10 +10,12 @@ object Carrom {
     ControleManager.promptChoices()
     carrom.strike(player1)
     carrom.strike(player2)
-    var status1 = carrom.getGameStatus(player1)
-    var status2 = carrom.getGameStatus(player1)
-    println(status1)
-    println(status2)
+    carrom.showScoreBoard(player1)
+    carrom.showScoreBoard(player2)
+//    var status1 = carrom.getGameStatus(player1)
+//    var status2 = carrom.getGameStatus(player1)
+//    println(status1)
+//    println(status2)
 
 
   }

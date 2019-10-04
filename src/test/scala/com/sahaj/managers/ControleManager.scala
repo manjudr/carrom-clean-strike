@@ -27,15 +27,17 @@ object ControleManager {
   }
 
   def showInDashBoard(board: GameStatus) = {
-    println("USER ID:", board.userId)
-    println("STATUS:", board.status)
-    println("SCORE:", board.score)
+    println("=============================")
+    println("USER ID:" + board.userId)
+    println("STATUS:" + board.status)
+    println("SCORE:" + board.score)
+    println("=============================")
 
   }
 
-  def resetGame(): Unit ={
+  def resetGame(): Unit = {
     StateManager.resetState()
-   // UserManager.resetUser()
+    // UserManager.resetUser()
   }
 
 
