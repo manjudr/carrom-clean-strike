@@ -14,26 +14,45 @@ object RuleManager {
   }
 
   def strikeValidate(user: User): CoinsDashBoard = {
-    CoinsDashBoard(Some(10), Some(1), Some(5), Some(2), Some(4))
+    println("strike...validate")
+    val addition_points = 1
+    val block_coins = 1
+    val negative_points = 0
+    println(user.score)
+
+    user.score += addition_points
+    println(user.score)
+    user.blockCoins += block_coins
+    val remaningBlackCoins = StateManager.blackCoin - block_coins
+    val remaningRedkCoins = StateManager.redCoin - user.redCoins
+    CoinsDashBoard(Some(user.score), Some(user.redCoins), Some(user.blockCoins), Some(remaningBlackCoins), Some(remaningRedkCoins))
   }
 
   def multiStrikeValidate(user: User): CoinsDashBoard = {
+    val addition_points = 2
+    val negative_points = 0
     CoinsDashBoard(Some(10), Some(1), Some(5), Some(2), Some(4))
   }
 
   def redStrikeValidate(user: User): CoinsDashBoard = {
+    val addition_points = 3
+    val negative_points = 0
     CoinsDashBoard(Some(10), Some(1), Some(5), Some(2), Some(4))
   }
 
   def strikerStrikeValidate(user: User): CoinsDashBoard = {
+    val addition_points = 0
+    val negative_points = -1
     CoinsDashBoard(Some(10), Some(1), Some(5), Some(2), Some(4))
   }
 
   def defunctCoinValidate(user: User): CoinsDashBoard = {
+    val addition_points = 0
+    val negative_points = -3
     CoinsDashBoard(Some(10), Some(1), Some(5), Some(2), Some(4))
   }
 
   def gameStatus(user: User): GameStatus = {
-    GameStatus("WON", 10, user.identifier)
+    GameStatus(user.status, user.score, user.identifier)
   }
 }

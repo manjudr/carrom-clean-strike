@@ -19,7 +19,7 @@ class CarromBoardService extends Carrom {
   }
 
   override def strike(user: User): CoinsDashBoard = {
-    val gameStatus = RuleManager.gameStatus(user)
+   // val gameStatus = RuleManager.gameStatus(user)
     val status = RuleManager.validate(user, "STRIKE")
     UserManager.updateUserState(user, status)
     StateManager.updateState(status)
@@ -48,6 +48,23 @@ class CarromBoardService extends Carrom {
 
   def showScoreBoard(user: User): Unit = {
     ControleManager.showInDashBoard(this.getGameStatus(user))
+  }
+
+  def defInvalidHit(user: User): CoinsDashBoard = {
+    null
+    //CoinsDashBoard(user.score, )
+  }
+
+  def hit(hitType: Choices, user: User): CoinsDashBoard = {
+    hitType.number match {
+      case 1 => strike(user)
+      case 2 => multiStrike(user)
+      case 3 => redStrike(user)
+      case 4 => strikerStrike(user)
+      case 5 => defunctCoin(user)
+      case 6 => defInvalidHit(user)
+
+    }
   }
 
 }

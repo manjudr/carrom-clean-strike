@@ -1,4 +1,4 @@
-import com.sahaj.managers.{ControleManager, UserManager}
+import com.sahaj.managers.{Choices, ControleManager, UserManager}
 import com.sahaj.services.CarromBoardService
 
 object Carrom {
@@ -7,15 +7,17 @@ object Carrom {
     val player1 = UserManager.registerUser("Manju")
     val player2 = UserManager.registerUser("Manoj")
 
-    ControleManager.promptChoices()
-    carrom.strike(player1)
-    carrom.strike(player2)
+    val response: Choices = ControleManager.promptChoices()
+    carrom.hit(response, player1)
+    // carrom.strike(player1)
+    //carrom.strike(player2)
+    println(player1)
     carrom.showScoreBoard(player1)
-    carrom.showScoreBoard(player2)
-//    var status1 = carrom.getGameStatus(player1)
-//    var status2 = carrom.getGameStatus(player1)
-//    println(status1)
-//    println(status2)
+    //carrom.showScoreBoard(player2)
+    //    var status1 = carrom.getGameStatus(player1)
+    //    var status2 = carrom.getGameStatus(player1)
+    //    println(status1)
+    //    println(status2)
 
 
   }
