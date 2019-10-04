@@ -1,4 +1,4 @@
-import com.sahaj.managers.{Choices, ControleManager, UserManager}
+import com.sahaj.managers.{Choices, DashBoardManager, UserManager}
 import com.sahaj.services.CarromBoardService
 
 object Carrom {
@@ -7,17 +7,21 @@ object Carrom {
 
     val player1 = UserManager.registerUser("Manju")
     val player2 = UserManager.registerUser("Manoj")
-
-    val promptFor = if (player1.status == "ACTIVE") player1 else player2
-
-    while (promptFor.wonStatus != "WON") {
-      val response: Choices = ControleManager.promptChoices(promptFor)
+    while (!carrom.isMatchWon) {
+      val activePlayer = if (player1.status == "ACTIVE") {
+        player2.restStatus("ACTIVE")
+        player1
+      } else {
+        player1.restStatus("ACTIVE")
+        player2
+      }
+      val response: Choices = DashBoardManager.promptChoices(activePlayer)
       if (response.number != 7) {
-        carrom.hit(response, player1)
-        carrom.showScoreBoard(player1)
+        carrom.hit(response, activePlayer)
+        carrom.showScoreBoard(activePlayer)
       } else {
         println("Closing..")
-        System.exit(1)
+        System.exit(0)
       }
     }
   }

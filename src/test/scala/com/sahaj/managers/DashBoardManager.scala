@@ -4,16 +4,13 @@ import com.sahaj.services.{GameStatus, User}
 
 case class Choices(number: Int)
 
-object ControleManager {
+object DashBoardManager {
 
   def readInput(): Choices = {
     val input = scala.io.StdIn.readInt()
     Choices(input)
   }
 
-  def getNextPlayer(): User = {
-    null
-  }
 
   def promptChoices(user: User): Choices = {
     println(user.identifier + ": Please select the below one choice")

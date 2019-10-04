@@ -13,9 +13,10 @@ import com.sahaj.managers._
 case class GameStatus(status: String, score: Int, userId: String, active: String)
 
 class CarromBoardService extends Carrom {
+  var matchStatus: Boolean = false
 
   override def reset(): Unit = {
-    ControleManager.resetGame()
+    DashBoardManager.resetGame()
   }
 
   override def strike(user: User): CoinsDashBoard = {
@@ -47,12 +48,15 @@ class CarromBoardService extends Carrom {
   }
 
   def showScoreBoard(user: User): Unit = {
-    ControleManager.showInDashBoard(this.getGameStatus(user))
+    DashBoardManager.showInDashBoard(this.getGameStatus(user))
   }
 
-  def defInvalidHit(user: User): CoinsDashBoard = {
-    null
-    //CoinsDashBoard(user.score, )
+  def defFailedHit(user: User): CoinsDashBoard = {
+    RuleManager.failedHit(user)
+  }
+
+  def isMatchWon: Boolean = {
+    matchStatus
   }
 
   def hit(hitType: Choices, user: User): CoinsDashBoard = {
@@ -62,7 +66,7 @@ class CarromBoardService extends Carrom {
       case 3 => redStrike(user)
       case 4 => strikerStrike(user)
       case 5 => defunctCoin(user)
-      case 6 => defInvalidHit(user)
+      case 6 => defFailedHit(user)
 
     }
   }
