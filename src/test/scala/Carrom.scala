@@ -6,6 +6,6 @@ object Carrom {
     val carrom = new CarromBoardService()
     val player1 = PlayerManager.registerUser("Manju")
     val player2 = PlayerManager.registerUser("Manoj")
-    PlayerManager.play(player1, player1, carrom)
+    PlayerManager.play(player1, player2, carrom)
   }
 }

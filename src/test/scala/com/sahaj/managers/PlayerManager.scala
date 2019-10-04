@@ -2,7 +2,7 @@ package com.sahaj.managers
 
 import com.sahaj.services.{CarromBoardService, User}
 
-object UserManager {
+object PlayerManager {
   def registerUser(userIdentifier: String): User = {
     new User(userIdentifier)
   }
