@@ -10,7 +10,7 @@ import com.sahaj.managers._
   */
 
 
-case class GameStatus(status: String, score: Int, userId: String)
+case class GameStatus(status: String, score: Int, userId: String, active: String)
 
 class CarromBoardService extends Carrom {
 
@@ -19,7 +19,7 @@ class CarromBoardService extends Carrom {
   }
 
   override def strike(user: User): CoinsDashBoard = {
-   // val gameStatus = RuleManager.gameStatus(user)
+    // val gameStatus = RuleManager.gameStatus(user)
     val status = RuleManager.validate(user, "STRIKE")
     UserManager.updateUserState(user, status)
     StateManager.updateState(status)

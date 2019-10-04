@@ -14,11 +14,9 @@ object RuleManager {
   }
 
   def strikeValidate(user: User): CoinsDashBoard = {
-    println("strike...validate")
     val addition_points = 1
     val block_coins = 1
     val negative_points = 0
-    println(user.score)
 
     user.score += addition_points
     println(user.score)
@@ -53,6 +51,6 @@ object RuleManager {
   }
 
   def gameStatus(user: User): GameStatus = {
-    GameStatus(user.status, user.score, user.identifier)
+    GameStatus(user.status, user.score, user.identifier, user.wonStatus)
   }
 }
