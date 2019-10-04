@@ -6,15 +6,15 @@ import com.sahaj.services.{GameStatus, User}
 trait Carrom {
   def reset(): Unit
 
-  def strike(user: User): CoinsDashBoard
+  def strike(user: User): Unit
 
-  def multiStrike(user: User): CoinsDashBoard
+  def multiStrike(user: User): Unit
 
-  def redStrike(user: User): CoinsDashBoard
+  def redStrike(user: User): Unit
 
-  def strikerStrike(user: User): CoinsDashBoard
+  def strikerStrike(user: User): Unit
 
-  def defunctCoin(user: User): CoinsDashBoard
+  def defunctCoin(user: User): Unit
 
   def getGameStatus(user: User): GameStatus
 

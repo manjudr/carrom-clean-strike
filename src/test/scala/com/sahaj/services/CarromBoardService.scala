@@ -19,28 +19,30 @@ class CarromBoardService extends Carrom {
     DashBoardManager.resetGame()
   }
 
-  override def strike(user: User): CoinsDashBoard = {
-    // val gameStatus = RuleManager.gameStatus(user)
+  override def strike(user: User): Unit = {
     val status = RuleManager.validate(user, "STRIKE")
-    UserManager.updateUserState(user, status)
     StateManager.updateState(status)
     null
   }
 
-  override def multiStrike(user: User) = {
-    RuleManager.validate(user, "MULTI_STRIKE")
+  override def multiStrike(user: User): Unit = {
+    val status = RuleManager.validate(user, "MULTI_STRIKE")
+    StateManager.updateState(status)
   }
 
-  override def redStrike(user: User) = {
-    RuleManager.validate(user, "RED_STRIKE")
+  override def redStrike(user: User): Unit = {
+    val status = RuleManager.validate(user, "RED_STRIKE")
+    StateManager.updateState(status)
   }
 
-  override def strikerStrike(user: User) = {
-    RuleManager.validate(user, "STRIKER_STRIKE")
+  override def strikerStrike(user: User): Unit = {
+    val status = RuleManager.validate(user, "STRIKER_STRIKE")
+    StateManager.updateState(status)
   }
 
-  override def defunctCoin(user: User): CoinsDashBoard = {
-    RuleManager.validate(user, "DEFUNCT_COIN")
+  override def defunctCoin(user: User): Unit = {
+    val status = RuleManager.validate(user, "DEFUNCT_COIN")
+    StateManager.updateState(status)
   }
 
   override def getGameStatus(user: User): GameStatus = {
@@ -59,7 +61,7 @@ class CarromBoardService extends Carrom {
     matchStatus
   }
 
-  def hit(hitType: Choices, user: User): CoinsDashBoard = {
+  def hit(hitType: Choices, user: User): Unit = {
     hitType.number match {
       case 1 => strike(user)
       case 2 => multiStrike(user)
