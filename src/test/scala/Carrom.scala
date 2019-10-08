@@ -1,4 +1,4 @@
-import com.sahaj.managers.{PlayerManager}
+import com.sahaj.managers.PlayerManager
 import com.sahaj.services.CarromBoardService
 
 object Carrom {
@@ -6,6 +6,11 @@ object Carrom {
     val carrom = new CarromBoardService()
     val player1 = PlayerManager.registerUser("Manju")
     val player2 = PlayerManager.registerUser("Manoj")
-    PlayerManager.play(player1, player2, carrom)
+    while (!carrom.isMatchWon) {
+      PlayerManager.play(player1, player2, carrom)
+    }
   }
+
+
 }
+

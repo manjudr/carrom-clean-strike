@@ -52,8 +52,8 @@ class CarromBoardService extends Carrom {
     DashBoardManager.showInDashBoard(this.getGameStatus(user))
   }
 
-  def defFailedHit(user: Player): CoinsDashBoard = {
-    RuleManager.failedHit(user)
+  def defFailedHit(player: Player): CoinsDashBoard = {
+    RuleManager.validate(player, "FAILED_HIT")
   }
 
   def isMatchWon: Boolean = {
@@ -68,6 +68,7 @@ class CarromBoardService extends Carrom {
       case 4 => strikerStrike(user)
       case 5 => defunctCoin(user)
       case 6 => defFailedHit(user)
+      case _ => println("INVALID OPTION:" + hitType.number)
 
     }
   }

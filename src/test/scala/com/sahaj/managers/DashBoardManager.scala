@@ -25,7 +25,7 @@ object DashBoardManager {
     Choices(response.number)
   }
 
-  def showInDashBoard(board: GameStatus):Unit = {
+  def showInDashBoard(board: GameStatus): Unit = {
     println("=============================")
     println("USER ID:" + board.userId)
     println("STATUS:" + board.status)
