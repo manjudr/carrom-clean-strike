@@ -1,6 +1,6 @@
 package com.sahaj.testServices
 
-import com.sahaj.managers.{PlayerManager, StateManager}
+import com.sahaj.managers.PlayerManager
 import com.sahaj.services.CarromBoardService
 
 class TestCarromService extends BaseSpec {
@@ -137,7 +137,7 @@ class TestCarromService extends BaseSpec {
         // Register two player to play the game.
         var player1 = PlayerManager.registerUser("Manjunath Davanam")
         var player2 = PlayerManager.registerUser("Maria Irudayam")
-        var hit = 0;
+        var hit = 0
 
         // for loop execution with a range
         for (hit <- 0 to 3) {
