@@ -16,7 +16,7 @@ class CarromBoardService extends Carrom {
   var matchStatus: Boolean = false
 
   override def reset(): Unit = {
-    DashBoardManager.resetGame()
+    StateManager.resetState()
   }
 
   override def strike(user: Player): Unit = {

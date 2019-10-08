@@ -31,10 +31,10 @@ object RuleManager {
 
   def strike(player: Player, command: String): CoinsDashBoard = {
     val rules: Rules = this.getRules(command)
-    val updatedValues = update(player, Attributes(rules.score, rules.strikedBlockCoins, rules.strikedRedCoins, rules.playingStatus, rules.invalidAttempt))
-    val remaningBlackCoins = StateManager.blackCoin - updatedValues.blockCoins
-    val remaningRedkCoins = StateManager.redCoin - updatedValues.redCoins
-    CoinsDashBoard(Some(updatedValues.score), Some(updatedValues.redCoins), Some(updatedValues.blockCoins), Some(remaningBlackCoins), Some(remaningRedkCoins))
+    update(player, Attributes(rules.score, rules.strikedBlockCoins, rules.strikedRedCoins, rules.playingStatus, rules.invalidAttempt))
+    val remaningBlackCoins = StateManager.blackCoin - player.getBlackCoins
+    val remaningRedkCoins = StateManager.redCoin - player.getRedCoins
+    CoinsDashBoard(Some(player.getScore), Some(player.getRedCoins), Some(player.getBlackCoins), Some(remaningBlackCoins), Some(remaningRedkCoins))
   }
 
   def failedHit(player: Player, command: String): CoinsDashBoard = {
@@ -42,28 +42,27 @@ object RuleManager {
     val rules: Rules = this.getRules(command)
     var score = 0
     var status = "ACTIVE"
-    if (player.attempts == rules.maxAttempts.getOrElse(3)) {
+    if (player.getAttempts == rules.maxAttempts.getOrElse(3)) {
       score += rules.score
       status = rules.playingStatus
     } else {
-      player.attempts += 1
+      player.setAttempts(player.getAttempts + 1)
     }
-    val updatedValues = update(player, Attributes(score, rules.strikedBlockCoins, rules.strikedRedCoins, status, player.attempts))
-    val remaningBlackCoins = StateManager.blackCoin - updatedValues.blockCoins
-    val remaningRedkCoins = StateManager.redCoin - updatedValues.redCoins
-    CoinsDashBoard(Some(updatedValues.score), Some(updatedValues.redCoins), Some(updatedValues.blockCoins), Some(remaningBlackCoins), Some(remaningRedkCoins))
+    update(player, Attributes(score, rules.strikedBlockCoins, rules.strikedRedCoins, status, player.getAttempts))
+    val remaningBlackCoins = StateManager.blackCoin - player.getBlackCoins
+    val remaningRedkCoins = StateManager.redCoin - player.getRedCoins
+    CoinsDashBoard(Some(player.getScore), Some(player.getRedCoins), Some(player.getBlackCoins), Some(remaningBlackCoins), Some(remaningRedkCoins))
   }
 
   def gameStatus(player: Player): GameStatus = {
-    GameStatus(player.status, player.score, player.identifier, player.wonStatus)
+    GameStatus(player.getStatus, player.getScore, player.identifier, player.getWonStatus)
   }
 
-  def update(player: Player, attribute: Attributes): Player = {
-    player.score += attribute.points
-    player.redCoins = attribute.redCoins
-    player.status = attribute.status
-    player.blockCoins = attribute.blockCoins
-    player
+  def update(player: Player, attribute: Attributes): Unit = {
+    player.setScore(player.getScore + attribute.points)
+    player.setRedCoins(attribute.redCoins)
+    player.setBlackCoins(attribute.blockCoins)
+    player.setStatus(attribute.status)
   }
 }
 

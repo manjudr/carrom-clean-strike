@@ -36,8 +36,7 @@ object DashBoardManager {
   }
 
   def resetGame(): Unit = {
-    StateManager.resetState()
-    // PlayerManager.resetUser()
+    // reset dashboard logic
   }
 
 
